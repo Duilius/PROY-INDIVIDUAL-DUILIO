@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- S E M A N T I C - U I -->
+    <link rel="stylesheet" href="../semantic-ui/semantic.min.css">
+    <script src="../semantic-ui/semantic.min.js"></script>
+
+
+	<title>Ventas por Sucursal</title>
+</head>
+<body>
+
+
+<div class="ui container">
+    <br><br>
+    <a href="/sucursales" class="ui" style="font-size: 2.5em; padding: 0px; "><i class="home icon"></i></a><span style="font-size: 2em;">Regresar<i class="angle double left icon"></i></span>
+	
+    <h1>Lista de Precios para esta Tienda</h1>
+    <h2  style="display: inline;" class="ui orange header">Sucursal: {{ produs[0][0] }}</h2>
+    <h3  style="display: inline;">&nbsp;&nbsp;&nbsp; <i class="building icon" style="font-size:1.25em"></i>Domicilio : {{ produs[0][1] }}</h3>
+
+    <table class="ui inverted table container" style="width:80%;">
+  	  <tbody>
+  	  	<tr>
+  	  		<td style="color:orange; font-size: 1.25em; font-weight: bold;" >Producto</td>
+  	  		<td style="color:orange; font-size: 1.25em; font-weight: bold;" >Tipo</td>
+  	  		<td style="color:orange; font-size: 1.25em; font-weight: bold;" >Precio</td>
+  	  	</tr>
+        {% for x in produs %}
+        <tr>
+            <td>{{ x[2] }}</td>
+            <td class="right aligned">{{ x[3] }}</td>
+            <td class="right aligned">{{ x[4] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>  
+
+</div>
+
+</body>
+</html>

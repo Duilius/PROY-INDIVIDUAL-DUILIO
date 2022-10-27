@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- S E M A N T I C - U I -->
+    <link rel="stylesheet" href="../semantic-ui/semantic.min.css">
+    <script src="../semantic-ui/semantic.min.js"></script>
+
+
+	<title>Consulta - Sucursales</title>
+</head>
+<body style="background: #222;">
+
+<div class="ui container">
+
+<div class="ui segment">
+  <div class="ui left rail">
+    <div class="ui segment">
+        <a href="/" style="font-size: 1.55em;">Regresar <i class="angle double left icon"></i></a>
+     </div>
+  </div>
+  <div class="ui right rail">
+    <div class="ui segment"> <h2>Clic en nombre de Sucursal</h2><i class="hand point left icon" style="font-size:2.5em;"></i></div>
+  </div>
+  
+    <!-- AL CENTRO DE LOS DOS DIVS LATERALES-->
+
+	<h1 class="ui orange header">Nuestras Tiendas en todo el país !</h1>
+    <table class="ui inverted table container" style="width:90%;">
+  	  <tbody>
+  	  	<tr>
+  	  		<td style="color:orange; font-size: 1.25em; font-weight: bold;" >Sucursal</td>
+  	  		<td style="color:orange; font-size: 1.25em; font-weight: bold;" >Domicilio</td>
+  	  		<td style="color:orange; font-size: 1.25em; font-weight: bold;" >Latitud</td>
+  	  		<td style="color:orange; font-size: 1.25em; font-weight: bold;" >Longitud</td>
+  	  	</tr>
+        {% for x in losF %}
+        <tr>
+            <td><a href='/productos/{{ x[2] }}'>{{ x[0] }}</a></td>
+            <td class="right aligned">{{ x[1] }}</td>
+            <td class="right aligned">{{ x[3] }}</td>
+            <td class="right aligned">{{ x[4] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>  
+
+</div>
+
+</div>
+</body>
+</html>

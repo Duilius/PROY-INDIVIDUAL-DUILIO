@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+
+    <title>🏁Proyecto Individual - 1 ::🏎 Racing</title>
+</head>
+<body>
+    <div class="ui container">
+        <h1>Año con más carreras <span style="font-size: 2em ;">🏎</span></h1>
+        <table class="ui selectable inverted table">
+            <thead>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>Año</td>
+                    <td class="right aligned">Total carreras</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for the_races in races %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ the_races[0] }}</td>
+                    <td class="right aligned">{{ the_races[1] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>    
+    </div>
+</body>
+</html>

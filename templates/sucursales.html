@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="text/javascript" src="./scripts/funcionesJS.js"></script>
+
+    <!-- libraries -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.js"></script>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.2.js"></script>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.4.2.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.4.2.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@holoviz/panel@0.13.0/dist/panel.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css">
+    <link rel="stylesheet" href="./css/setear.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    
+    <title>PyScript Demo</title>
+
+<py-env>
+  - numpy
+  - pandas
+  - bokeh
+  - panel==0.13.1a2  
+</py-env>
+</head>
+<body>
+    
+
+    <h4>Tabla: Canal de Venta</h4>
+    <div id="vacios"></div>
+<!--    
+    <py-script output="vacios" src="./scripts/vacios.py">
+    </py-script>
+-->
+<!--
+    <py-script>
+        import pandas as pd
+        from pyodide.http import open_url
+        #https://cdn.jsdelivr.net/npm/vega-datasets@1.29.0/data/airports.csv
+        
+        #https://br-files.hostinger.es/#:~:text=/domains/profeduilio.com/public_html/SubDominioPython/compra.csv
+        url ="https://cdn.jsdelivr.net/npm/vega-datasets@1.29.0/data/airports.csv"
+       
+        df = pd.read_csv(open_url(url))
+
+        csv = Element('vacios')
+
+        csv.write(df)
+    </py-script>
+-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="extrae-tab" data-bs-toggle="tab" data-bs-target="#extrae" type="button" role="tab" aria-controls="extrae" aria-selected="true">EXTRAER
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="transforma-tab" data-bs-toggle="tab" data-bs-target="#transforma" type="button" role="tab" aria-controls="transforma" aria-selected="false">TRANSFORMAR</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="carga-tab" data-bs-toggle="tab" data-bs-target="#carga" type="button" role="tab" aria-controls="carga" aria-selected="false">CARGA</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Setear</button>
+        </li>
+    </ul>
+    
+      <div class="tab-content">
+        
+        <!--PESTAÑA /PROCESO DE EXTRACCIÓN/-->
+        <div class="tab-pane active" id="extrae" role="tabpanel" aria-labelledby="extrae-tab">Proceso de Extracción
+          <!--BARRA NAVEGACIÓN-->
+
+          <py-script>import pandas as pd</py-script>
+          <py-repl id="repl-demo" auto-generate="true">
+          </py-repl>
+          <!--FIN - BARRA NAVEGACIÓN-->
+        </div>
+
+        <!--PESTAÑA /TRANSFORMAR/-->
+        <div class="tab-pane" id="transforma" role="tabpanel" aria-labelledby="transforma-tab">TRANSFORMAR</div>
+
+        <!-- PESTAÑA /PROCESO DE CARGA/-->
+        <div class="tab-pane" id="carga" role="tabpanel" aria-labelledby="carga-tab">
+          <div id="cargando">Cargando !
+            
+            <py-inputbox id="el_r" class="PY-input" placeholder="carga aqui"></py-inputbox>
+            
+            <py-button label="Cargar !"></py-button>
+          </div>  
+          <!--<py-script output="cargando" src="./scripts/proceso_carga.py">ABCDEFG</py-script>        -->
+        </div>
+        
+
+        <!--PESTAÑA /SETEAR/-->
+        <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab"><!--TAB: SETEAR-->
+          <!--INICIO - SETEAR -->
+          <div class="container-md opciones" style="background-color: rgb(30, 187, 187); border:1px solid darkblue; border-radius: 6px;">
+            <div class="row">
+              <div class="col-3 archivo-local" style="background-color: rgb(96, 113, 96);">
+                <label class="custom-control-label" for="opt_local_file">Archivo Local</label>
+                <input type="radio" id="opt_local_file" onclick="escoge_file_local()" name="local_file" class="form-check-input" value="local_file">
+              </div><!--fin col ARCHIVO LOCAL-->
+                                           
+              <div class="col-3 archivo-local" style="background-color: rgb(151, 200, 234);">
+                <input type="radio" id="opt_no_local_file" onclick="escoge_url()" name="local_file" class="form-check-input" value="no_local_file">
+                <label class="custom-control-label" for="opt_no_local_file">Archivo Externo</label>
+              </div><!--fin col ARCHIVO NO-LOCAL -->
+            </div> <!--fin row-->
+
+            </div><!--FIN CONTAINER opciones-->
+            <!--div ARCHIVO LOCAL/EXTERNO-->
+            <div class="container la-data" style="min-height: 600px; max-height: 950px; height:auto;background-color: rgb(30, 187, 187); border:1px solid darkblue; border-radius: 6px;">
+              <div id="file_local"><!--OPCIONES DE ARCHIVO LOCAL-->
+                <div class="row" id="opciones" >
+                  
+                  <div id="tipo_file" class="col-3" style="border:0px solid black; width: auto; padding: 4px 0px 4px 0px;padding-right: 80px;">
+                    <h6 style="font-size: 0.9em;">Tipo de File</h6>
+                    <div style="display:inline; border:1px solid #999; border-radius: 4px; padding:2px 8px 2px 8px;">
+                      <label for="file_csv">CSV</label>         <input type="radio" name="ext_file" value="CSV" id="file_csv"> 
+                    </div>
+                    <div style="display:inline; border:1px solid #999; border-radius: 4px; padding:2px 8px 2px 8px;">
+                      <label for="file_txt">TXT</label>         <input type="radio" name="ext_file" value="TXT" id="file_txt">  
+                    </div>
+                    <div style="display:inline; border:1px solid #999; border-radius: 4px; padding:2px 8px 2px 8px;">
+                      <label for="file_xls">XLS(X)</label>      <input type="radio" name="ext_file" value="XLSX" id="file_xls">  
+                    </div>
+                    <div style="display:inline; border:1px solid #999; border-radius: 4px; padding:2px 8px 2px 8px;">
+                      <label for="file_sql">SQL</label>         <input type="radio" name="ext_file" value="SQL" id="file_sql">  
+                    </div>
+                  </div>
+                  
+                  <div id="separador" class="col-3" style="border:0px solid black; width: auto; padding: 4px 0px 4px 0px;">
+                    <h6 style="font-size: 0.9em;">Separador de Columnas</h6>
+
+                      <div class="radios_separador" style="display:inline; border:1px solid #999; border-radius: 4px; padding:2px 8px 2px 8px;">
+                        <label for="sep_coma">COMA [,]</label>
+                        <input type="radio" id="sep_coma" onclick="cesar(this)" name="sep_file" class="form-check-input" value="coma">
+                      </div>
+                      <div class="radios_separador" style="display:inline; border:1px solid #999; border-radius: 4px; padding:2px 8px 2px 8px;">  
+                        <label for="sep_pycoma">PUNTO Y COMA [;]</label>
+                        <input type="radio" id="sep_pycoma" onclick="cesar(this)" name="sep_file" value="pyc" >      
+                      </div>
+                      <div class="radios_separador" style="display:inline; border:1px solid #999; border-radius: 4px; padding:2px 8px 2px 8px;"> 
+                        <label for="sep_blanco">ESPACIO [&nbsp;&nbsp;]</label>
+                        <input type="radio" id="sep_blanco" name="sep_file" onclick="cesar(this)" value="blanco" >  
+                      </div>
+                      <div class="radios_separador" style="display:inline; border:1px solid #999; border-radius: 4px; padding:2px 8px 2px 8px;">
+                        <label for="sep_tab">[TAB]</label>                    
+                        <input type="radio" id="sep_tab" onclick="cesar(this)" name="sep_file" value="tab"> 
+                      </div>
+                      <div class="radios_separador" style="display:inline; border:1px solid #999; border-radius: 4px; padding:2px 8px 2px 8px;">
+                        <label for="sep_guion">GUIÓN [-]</label>              
+                        <input type="radio" id="sep_guion" onclick="cesar(this)" name="sep_file" value="guion">        
+                      </div>
+                    
+                  </div>
+                </div>
+                
+              </div><!--Fin div .file_local  OPCIONES DE ARCHIVO LOCAL-->
+
+              
+              <div id="file_remoto" style="display: none; border:1px solid red;"><!--OPCIONES DE ARCHIVO EXTERNO-URL-->
+                <div class="row" id="div_url_file" >
+                  
+                  
+                </div>
+
+                
+                
+              </div><!--Fin div .file_local  OPCIONES DE ARCHIVO EXTERNO-URL -->
+
+              <div class="row" id="opciones_file" style="width:auto; height:auto;">  
+                <table class="table table-sm table-light" style="width:auto; height:auto;">
+                  <tr>
+                    <td width="20%">
+                      <div id="fileInput" ></div>
+                    </td>
+                    <td width="20%">
+                      <div id="uploadButton" ></div>
+                    </td>
+                    <td width="20%">
+                      <div id="fileInput_url" ></div>
+                    </td>
+                    <td width="20%">
+                      <div id="uploadButton_url" ></div>
+                    </td>  
+                  </tr>
+                </table>
+              </div>
+
+
+            <div id="table" style="background-color: beige; width:auto; border:1px solid #555; height:auto; min-height:400px;"></div><!-- FIN DE DIV ID=table-->
+            <div id="botones_abajo" style="background-color: rgb(154, 214, 204); width:auto; border:1px solid #555; height:auto; ;">
+            <input type="text" id="yo" style="width:50%;border:1px solid rgb(85, 18, 18); height:40px; color:aqua">
+            <!-- TABLA RESUMEN-->
+            <table width="80%" style="border:1px solid #555; width: auto;">
+              <tr>
+                <td width="20%" class="td_tabl_resumen">Nombre DataFrame</td>
+                <td width="20%" class="td_tabl_resumen">Nombre de Tabla</td>
+                <td width="10%" class="td_tabl_resumen">Nº Filas</td>
+                <td width="10%" class="td_tabl_resumen">Nº Columnas</td>
+                <td width="10%" class="td_tabl_resumen">Ctdd. Filas Vacías</td>
+              </tr>
+              <tr>
+                <td width="20%" class="td_tabl_resumen"><input type="text" class="input_tabl_resumen"></td>
+                <td width="20%" class="td_tabl_resumen"><input type="text" class="input_tabl_resumen" placeholder="Escriba el nombre de la Tabla"></td>
+                <td width="10%" class="td_tabl_resumen"><input type="text" class="input_tabl_resumen"></td>
+                <td width="10%" class="td_tabl_resumen"><input type="text" class="input_tabl_resumen"></td>
+                <td width="10%" class="td_tabl_resumen"><input type="text" class="input_tabl_resumen"></td>
+              </tr>
+              <tr>
+                <td width="20%" class="td_tabl_resumen">Ciudad</td>
+                <td width="20%" class="td_tabl_resumen">Tienda</td>
+                <td width="10%" class="td_tabl_resumen">Área</td>
+                <td width="10%" class="td_tabl_resumen">Representante</td>
+              </tr>
+              <tr>
+                <td width="20%" class="td_tabl_resumen">
+                  <select class="input_tabl_resumen">
+                    <option value="uno">Ciudad-1</option>
+                    <option value="dos">Ciudad-2</option>
+                    <option value="tre">Ciudad-3</option>
+                    <option value="cua">Ciudad-4</option>
+                  </select>
+                </td>
+                <td width="20%" class="td_tabl_resumen">
+                  <select class="input_tabl_resumen">
+                    <option value="uno">Tienda-1</option>
+                    <option value="dos">Tienda-2</option>
+                    <option value="tre">Tienda-3</option>
+                    <option value="cua">Tienda-4</option>
+                  </select>
+                </td>
+                <td width="10%" class="td_tabl_resumen">
+                  <select class="input_tabl_resumen">
+                    <option value="uno">Área-1</option>
+                    <option value="dos">Área-2</option>
+                    <option value="tre">Área-3</option>
+                    <option value="cua">Área-4</option>
+                  </select>
+                </td>
+                <td width="10%" class="td_tabl_resumen">
+                  <select class="input_tabl_resumen">
+                    <option value="uno">Representante-1</option>
+                    <option value="dos">Representante-2</option>
+                    <option value="tre">Representante-3</option>
+                    <option value="cua">Representante-4</option>
+                  </select>
+                </td>
+                <td><button >Grabar</button></td>
+              </tr>
+            </table>
+          </div><!-- FIN DE DIV ID=botones_abajo-->
+            <!-- FIN DE TABLA RESUMEN-->
+          </div><!--FIN div ARCHIVO LOCAL/EXTERNO-->
+
+<py-script>
+  #from bokeh.io import curdoc
+  #from bokeh.models.widgets import FileInput
+  #import pybase64
+  #from pybase64 import b64decode
+  #from base64 import b64decode
+  
+  from js import alert
+  from pyodide.http import open_url
+  import asyncio
+  import pandas as pd
+  import panel as pn
+  from panel.io.pyodide import show          
+
+  #radio_tipo_file = pn.widgets.RadioButtonGroup(name='Radio Button Group', options=['CSV', 'txt', 'xls', 'sql', 'json', 'parquet'], button_type='success')
+  #radio_tipo_separador = pn.widgets.RadioButtonGroup(name='Radio Button Group', options=[',', ';', ' ', '-', '_'], button_type='success')
+
+  fileInput = pn.widgets.FileInput(accept='.csv, .txt, .xls, .xlsx, .json, .parquet')
+  uploadButton = pn.widgets.Button(name='Archivo Local', button_type = 'primary')
+  table = pn.widgets.Tabulator(pagination='remote', page_size=10)
+
+  file_input_url  =pn.widgets.TextInput(name='', placeholder='URL (http...)')
+  uploadButton_url=pn.widgets.Button(name='Archivo Externo', button_type = 'primary')
+
+  archivo=""
+  
+  ''' ARCHIVO LOCAL '''
+  def process_file_local(event):
+    if fileInput.value is not None:
+      archivo = fileInput.filename
+      la_ruta = fileInput.value
+      
+      if archivo.endswith('.json'):
+        #decoded = b64decode(la_ruta)
+        #f = io.BytesIO(decoded)
+
+        table.value = pd.read_json(io.BytesIO(fileInput.value))
+        #table.value = pd.read_json(io.BytesIO(fileInput.value), lines=True)
+        
+      if archivo.endswith('.csv'):
+        table.value = pd.read_csv(io.BytesIO(fileInput.value), sep=",")
+
+      if archivo.endswith('.txt'):
+        table.value = pd.read_csv(io.BytesIO(fileInput.value), sep="|")    
+
+      if archivo.endswith('.parquet'):
+        table.value = pd.read_parquet(io.BytesIO(fileInput.value), engine=pyarrow)            
+
+
+      if archivo.endswith('.xlsx'):
+      	table.value = pd.read_excel(open_url(fileInput.value))            
+        #table.value = pd.read_excel(io.BytesIO(fileInput))            
+      
+      document.getElementById('table').style.display = 'block'
+      document.getElementById('yo').style.color = 'red'
+      document.getElementById('yo').value= archivo
+
+  uploadButton.on_click(process_file_local)
+
+  
+  #radio_tipo_separador.onclick(separador)  
+
+  await show(file_input_url, 'fileInput_url')
+  await show(uploadButton_url, 'uploadButton_url')
+
+  #await show(radio_tipo_file, 'tipo_file')
+  #await show(radio_tipo_separador, 'separador')
+  await show(fileInput, 'fileInput')
+  await show(uploadButton, 'uploadButton')
+  #await show(table, 'table')
+
+  ''' ARCHIVO EXTERNO - URL '''
+  #https://cdn.jsdelivr.net/npm/vega-datasets@1.29.0/data/airports.csv
+  #https://panel.holoviz.org/reference/widgets/TextInput.html
+
+  def process_file_externo(event):
+    if file_input_url.value is not None:
+      la_url = file_input_url.value
+      
+      if la_url.startswith('http'):
+        if la_url.endswith('.xls') or la_url.endswith('.xlsx'):
+          table.value = pd.read_excel(open_url(), sep=",")
+        else:
+          table.value = pd.read_csv(open_url(la_url), sep=",")  
+      
+  
+
+  uploadButton_url.on_click(process_file_externo)
+
+    
+  await show(table, 'table')
+
+  <!--
+  radio_group = pn.widgets.RadioBoxGroup(name='RadioBoxGroup', options=['Biology', 'Chemistry', 'Physics'], inline=True)
+  radio_group
+  -->
+</py-script>
+
+
+      <py-list id="myList">      </py-list>
+      <py-repl id="my-repl" auto-generate="true">#Este será/es el nombre de tu DataFrame 👉  'table.value'. Renómbralo y usalo</py-repl>
+
+      <script>
+        var firstTabEl = document.querySelector('#myTab li:last-child button')
+        var firstTab = new bootstrap.Tab(firstTabEl)
+      
+        firstTab.show()
+      </script>
+
+
+<!--
+    <h3>Interactive REPL</h3>
+    <py-repl id="repl-demo" auto-generate="true"></py-repl>
+-->
+<!--  pd.util.testing.makeDataFrame() -->
+    <br>
+<!--
+    <h3>Visualization</h3>
+    <div id="plot"></div>
+
+<py-script>
+import asyncio
+import panel as pn
+import numpy as np
+import pandas as pd
+from pyodide.http import open_url()
+
+from bokeh.models import ColumnDataSource
+from bokeh.plotting import figure
+from panel.io.pyodide import show
+
+df = pd.DataFrame(np.random.randn(10,4), columns=list('ABCD')).cumsum()
+p  = figure(height=300, width=400)
+
+cds = ColumnDataSource(data=ColumnDataSource.from_df(df))
+
+p.line('index', 'A', source=cds, line_color='firebrick')
+p.line('index', 'B', source=cds, line_color='dodgerblue')
+p.line('index', 'C', source=cds, line_color='goldenrod')
+p.line('index', 'D', source=cds, line_color='purple')
+
+await show(p, 'plot')
+</py-script>
+-->
+
+<script type="text/javascript"> 
+function toggle_opt_local_file(){
+
+  document.getElementById("div_local_file").style.display="block";
+  document.getElementById("div_no_local_file").style.display="none";
+  
+}
+
+function toggle_opt_no_local_file(){
+
+document.getElementById("div_local_file").style.display="none";
+document.getElementById("div_no_local_file").style.display="block";
+
+}
+
+function Ver_Campos(){
+
+  if(document.getElementById('opt_local_file').checked){
+    url_local=document.getElementById("inp_local_file").value;
+    alert("Local FIle :" + url_local);
+  }
+
+  if(document.getElementById('opt_no_local_file').checked){
+    url_externa=document.getElementById("inp_no_local_file").value;
+    alert("Local FIle :" + url_externa);
+  }
+}
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+
+function jojo(el_valor){
+  el_valor = document.getElementById("new-task-content").value;
+  document.getElementById("guestbook").innerHTML=el_valor;
+  alert("el dato ===> "+ document.getElementById("new-task-content").value)
+
+}
+/*
+<py-script>
+import asyncio
+import panel as pn
+import numpy as np
+import pandas as pd
+from pyodide.http import open_url
+from js import document
+
+from bokeh.models import ColumnDataSource
+from bokeh.plotting import figure
+from panel.io.pyodide import show
+
+#df = pd.DataFrame(np.random.randn(10,4), columns=list('ABCD')).cumsum()
+
+url = document.getElementById("inp_local_file").value
+df = pd.read_csv(open_url(url))
+df = df.head()
+await show(df, 'guestbook')
+</py-script>
+*/
+</script>
+
+<py-script>
+
+</py-script>
+
+</body>
+</html>  
