@@ -9,6 +9,8 @@ Implementar la cadena de procesamiento de datos desde la recepción¿exploració
 Se analizó en primer lugar el contenido de cada archivo. En particular los campos o nombres de columna.
 Se pudo apreciar que para resolver las preguntas o cumplir con el Proyecto No harían falta algunos campos, de manera que las columnas que tuvieran 95% de "celdas" vacías o más, serían obviadas.
 
+![This is an image](https://python.profeduilio.com/flujo-proyecto-duilio.html)
+
 #### -**Archivos fuente**:
 Los datos están contenidos en archivos de diversos formatos (csv, txt, excel, parquet y json). 
 
