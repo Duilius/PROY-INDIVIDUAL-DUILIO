@@ -1,5 +1,7 @@
 # PROY-INDIVIDUAL-DUILIO
-Proyecto Infividual - FastAPI - MySQL - SQL-Alchemy 
+Proyecto Infividual - FastAPI - MySQL - SQLAlchemy - Jinga2 - HTMX - PyScript
+
+![Duilio Restuccia](https://python.profeduilio.com/profeduilio.png)
 
 ## OBJETIVO DEL PROYECTO:
 
@@ -56,3 +58,5 @@ En nuestro caso hemos ejecutado los querys  en los módulos Python creados para 
 
 #### RECOMENDACIONES
 La información además de su valor intrínsico debe dotarsele de una buena presentación; necesaria para aspectos como Experiencia de Usuario y darle a los mismos la posibilidad y facilidad para la exploración o navegación entre los datos, por lo cual se aconseja el uso de tecnologías como PyScript y HTMLX.
+
+![Integrar Tecnologías](https://python.profeduilio.com/integrar-tecnologias.jpg)
